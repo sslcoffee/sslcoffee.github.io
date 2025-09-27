@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SSL Coffee</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:serif;color:#4b2e2b;scroll-behavior:smooth;background:linear-gradient(to bottom right,#f5f2e7,#e6dfd3)}
+
+/* NAV */
+header{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(255,250,243,0.95);border-bottom:1px solid rgba(210,180,140,0.3)}
+nav{max-width:1200px;margin:auto;display:flex;justify-content:space-between;align-items:center;height:82px;padding:0 1.5rem}
+nav .logo{font-weight:bold;font-size:1.25rem}
+nav ul{display:flex;gap:1rem;list-style:none}
+nav ul li button{background:none;border:none;color:#4b2e2b;cursor:pointer;padding:.5rem 1rem;border-radius:9999px;transition:.2s}
+nav ul li button:hover{background:rgba(230,223,211,1)}
+
+/* HERO */
+.hero{height:80vh;background:url('https://images.unsplash.com/photo-1509042239860-f550ce710b93') center/cover no-repeat;position:relative;display:flex;align-items:center;justify-content:center;text-align:center}
+.hero::before{content:"";position:absolute;inset:0;background:rgba(75,46,43,.6)}
+.hero .content{position:relative;color:#f5f2e7;padding:0 1rem}
+.hero h1{font-size:3rem;font-weight:800;margin-bottom:1rem}
+.hero p{font-size:1.1rem;margin-bottom:1.5rem}
+.btn{padding:.75rem 1.5rem;border-radius:9999px;border:none;cursor:pointer;transition:.2s}
+.btn-primary{background:#8b5e3c;color:#f5f2e7}
+.btn-primary:hover{background:#714b2f}
+
+/* SECTIONS */
+section{padding:5rem 1rem;text-align:center}
+section h2{font-size:2.5rem;font-weight:bold;margin-bottom:1.5rem}
+.light{background:#fffaf3}
+
+/* LOCATION */
+iframe{border:1px solid #ccc;border-radius:1rem}
+
+/* PROGRAM */
+.program-list{list-style:none;display:inline-block;text-align:left;margin-top:1rem}
+.program-list li{margin-bottom:.5rem}
+
+/* GALLERY */
+.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1rem;margin-top:2rem}
+.gallery img{width:100%;height:250px;object-fit:cover;border-radius:1rem}
+
+/* MENU */
+.menu-buttons{display:flex;flex-wrap:wrap;justify-content:center;gap:1rem;margin-bottom:2rem}
+.menu-btn{padding:.5rem 1.5rem;border-radius:9999px;border:1px solid rgba(210,180,140,0.3);background:#fffaf3;color:#4b2e2b;cursor:pointer;transition:.2s}
+.menu-btn:hover{background:#e6dfd3}
+.menu-btn.active{background:#8b5e3c;color:#f5f2e7}
+.menu-items{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;min-height:240px}
+.card{background:#fffaf3;border:1px solid rgba(210,180,140,0.3);border-radius:1rem;overflow:hidden;cursor:pointer;transition:transform .2s}
+.card:hover{transform:scale(1.05)}
+.card img{width:100%;height:180px;object-fit:cover}
+.card-body{padding:1rem}
+.card-body h4{font-size:1.1rem;font-weight:600}
+.card-body p{color:#8b5e3c;font-weight:600}
+
+/* MODAL */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:flex;align-items:center;justify-content:center;z-index:100}
+.modal-content{background:#fffaf3;border-radius:1rem;padding:1.5rem;max-width:600px;width:90%;position:relative;display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.modal-content img{width:100%;height:200px;object-fit:cover;border-radius:.75rem}
+.close{position:absolute;top:.5rem;right:.75rem;font-size:1.5rem;cursor:pointer}
+.btn-secondary{background:#fffaf3;border:1px solid rgba(210,180,140,0.3);padding:.5rem 1rem;border-radius:9999px;cursor:pointer}
+.hidden{display:none}
+
+/* CONTACT */
+.social{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-top:1rem}
+.social a{background:#8b5e3c;color:#f5f2e7;text-decoration:none;padding:.75rem 1.5rem;border-radius:.75rem;transition:.2s}
+.social a:hover{background:#4b2e2b}
+
+/* FOOTER */
+footer{background:#4b2e2b;color:#f5f2e7;text-align:center;padding:1rem}
+</style>
+</head>
+<body>
+
+<header>
+  <nav>
+    <div class="logo">SSL Coffee</div>
+    <ul>
+      <li><button data-scroll="home">Acasă</button></li>
+      <li><button data-scroll="location">Locație</button></li>
+      <li><button data-scroll="program">Program</button></li>
+      <li><button data-scroll="gallery">Galerie</button></li>
+      <li><button data-scroll="menu">Meniu</button></li>
+      <li><button data-scroll="contact">Contact</button></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section id="home" class="hero">
+  <div class="content">
+    <h1>SSL Coffee</h1>
+    <p>Strong, Short or Long</p>
+    <button class="btn btn-primary" data-scroll="menu">Vezi Meniul</button>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section id="location" class="light">
+  <h2>📍 Locație</h2>
+  <p>Ne găsești pe strada Mihai Eminescu nr 35.</p>
+  <br>
+ <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5486.215429390281!2d26.887843493579116!3d46.56533520000001!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40b56fd745b840e7%3A0x39c1b8fb07f29f36!2sSsl!5e0!3m2!1sen!2sro!4v1758985875341!5m2!1sen!2sro" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+</section>
+
+<!-- PROGRAM -->
+<section id="program">
+  <h2>🎶 Program</h2>
+  <ul class="program-list">
+    <li>Luni-Vineri: 07:00-22:00</li>
+    <li>Sambata si Duminica: Inchis</li>
+  </ul>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="light">
+  <h2>📸 Galerie</h2>
+  <div class="gallery">
+    <img src="https://source.unsplash.com/600x400/?coffee,1" alt="">
+    <img src="https://source.unsplash.com/600x400/?coffee,2" alt="">
+    <img src="https://source.unsplash.com/600x400/?coffee,3" alt="">
+    <img src="https://source.unsplash.com/600x400/?coffee,4" alt="">
+    <img src="https://source.unsplash.com/600x400/?coffee,5" alt="">
+  </div>
+</section>
+
+<!-- MENU -->
+<section id="menu">
+  <h2>☕ Meniu</h2>
+  <div class="menu-buttons">
+    <button class="menu-btn" data-cat="Coffee">Cafea</button>
+    <button class="menu-btn" data-cat="Desserts">Deserturi</button>
+    <button class="menu-btn" data-cat="Snacks">Gustări</button>
+  </div>
+  <div id="menu-items" class="menu-items">
+    <p style="grid-column:1/-1;text-align:center;color:#666;">Selectează o categorie pentru a vedea produsele.</p>
+  </div>
+</section>
+
+<!-- MODAL -->
+<div id="modal" class="modal hidden">
+  <div class="modal-content">
+    <span id="modal-close" class="close">&times;</span>
+    <img id="modal-img" src="" alt="">
+    <div>
+      <h3 id="modal-name"></h3>
+      <p id="modal-price" style="color:#8b5e3c;font-weight:bold;margin-top:.5rem;"></p>
+      <p id="modal-ingredients" style="margin:1rem 0;"></p>
+    </div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section id="contact" class="light">
+  <h2>📬 Contact</h2>
+  <div class="social">
+    <a href="https://www.instagram.com/ssl_strong_short_or_long/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/p/SSL-Strong-Short-or-Long-100078670276602/" target="_blank">Facebook</a>
+    <a href="https://tiktok.com" target="_blank">TikTok</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  © 2025 SSL Coffee Shop — Toate drepturile rezervate.
+</footer>
+
+<script>
+// MENIU
+const menuData={
+ Coffee:[
+  {name:"Espresso",price:"12 RON",img:"https://source.unsplash.com/400x300/?espresso,coffee",ingredients:"Cafea măcinată fin, apă fierbinte"},
+  {name:"Cappuccino",price:"15 RON",img:"https://source.unsplash.com/400x300/?cappuccino,coffee",ingredients:"Espresso, lapte spumat, spumă de lapte"},
+  {name:"Latte",price:"16 RON",img:"https://source.unsplash.com/400x300/?latte,coffee",ingredients:"Espresso, lapte încălzit"},
+  {name:"Mocha",price:"17 RON",img:"https://source.unsplash.com/400x300/?mocha,coffee",ingredients:"Espresso, ciocolată, lapte"}
+ ],
+ Desserts:[
+  {name:"Cheesecake",price:"18 RON",img:"https://source.unsplash.com/400x300/?cheesecake,dessert",ingredients:"Brânză dulce, zahăr, blat crocant"},
+  {name:"Brownie",price:"14 RON",img:"https://source.unsplash.com/400x300/?brownie,dessert",ingredients:"Ciocolată, făină, unt, zahăr"},
+  {name:"Tiramisu",price:"20 RON",img:"https://source.unsplash.com/400x300/?tiramisu,dessert",ingredients:"Cafea, mascarpone, cacao, pișcoturi"}
+ ],
+ Snacks:[
+  {name:"Sandviș",price:"20 RON",img:"https://source.unsplash.com/400x300/?sandwich,snack",ingredients:"Pâine, șuncă, brânză, legume"},
+  {name:"Quiche",price:"19 RON",img:"https://source.unsplash.com/400x300/?quiche,snack",ingredients:"Ouă, smântână, legume, aluat"},
+  {name:"Bagel",price:"10 RON",img:"https://source.unsplash.com/400x300/?bagel,snack",ingredients:"Făină, drojdie, cremă de brânză"}
+ ]
+};
+
+// SCROLL
+document.querySelectorAll("[data-scroll]").forEach(btn=>{
+  btn.addEventListener("click",()=>{
+    document.getElementById(btn.dataset.scroll).scrollIntoView({behavior:"smooth"});
+  });
+});
+
+// MENIU LOGIC cu TOGGLE
+const menuBtns=document.querySelectorAll(".menu-btn");
+const menuItems=document.getElementById("menu-items");
+let activeCategory=null;
+
+menuBtns.forEach(b=>{
+ b.addEventListener("click",()=>{
+   if(activeCategory===b.dataset.cat){
+     // închide categoria dacă este deja deschisă
+     b.classList.remove("active");
+     activeCategory=null;
+     menuItems.innerHTML='<p style="grid-column:1/-1;text-align:center;color:#666;">Selectează o categorie pentru a vedea produsele.</p>';
+     return;
+   }
+   menuBtns.forEach(bb=>bb.classList.remove("active"));
+   b.classList.add("active");
+   activeCategory=b.dataset.cat;
+   renderMenu(activeCategory);
+ });
+});
+
+function renderMenu(cat){
+ menuItems.innerHTML="";
+ menuData[cat].forEach(item=>{
+   const card=document.createElement("div");
+   card.className="card";
+   card.innerHTML=`
+     <img src="${item.img}" alt="${item.name}">
+     <div class="card-body">
+       <h4>${item.name}</h4>
+       <p>${item.price}</p>
+     </div>`;
+   card.addEventListener("click",()=>openModal(item));
+   menuItems.appendChild(card);
+ });
+}
+
+// MODAL
+const modal=document.getElementById("modal");
+const closeBtn=document.getElementById("modal-close");
+closeBtn.addEventListener("click",()=>modal.classList.add("hidden"));
+modal.addEventListener("click",e=>{if(e.target===modal)modal.classList.add("hidden")});
+
+function openModal(item){
+ document.getElementById("modal-img").src=item.img;
+ document.getElementById("modal-name").textContent=item.name;
+ document.getElementById("modal-price").textContent=item.price;
+ document.getElementById("modal-ingredients").textContent="Ingrediente: "+item.ingredients;
+ modal.classList.remove("hidden");
+}
+
+document.getElementById("add-order").addEventListener("click",()=>alert("Adăugat la comandă (demo)"));
+</script>
+</body>
+</html>
